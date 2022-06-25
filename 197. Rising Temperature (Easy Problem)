@@ -1,0 +1,3 @@
+select w.id
+from weather w, weather x
+where w.temperature > x.temperature and datediff(w.recordDate, x.recordDate) = 1;
