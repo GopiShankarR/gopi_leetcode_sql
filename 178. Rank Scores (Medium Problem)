@@ -1,0 +1,5 @@
+select c.score, count(p.score) AS 'rank' from 
+(select distinct score from scores) as p, scores as c
+where c.score <= p.score
+group by c.id, c.score
+order by c.score desc;
