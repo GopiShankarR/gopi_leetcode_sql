@@ -1,0 +1,11 @@
+# Write your MySQL query statement below
+WITH alias AS (
+SELECT player_id, min(event_date) as event_start_date
+from Activity
+group by player_id )
+
+SELECT round((count(distinct al.player_id) / (select count(distinct player_id) from Activity)),2) as fraction
+FROM alias al
+join Activity a
+on al.player_id = a.player_id
+and datediff(al.event_start_date, a.event_date) = -1;
